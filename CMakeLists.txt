@@ -26,8 +26,8 @@ MESSAGE(STATUS "top dir = " ${TOP_DIR})
 MESSAGE(STATUS "source dir = " ${SRC_DIR})
 MESSAGE(STATUS "source list = " ${SRC_LIST})
 
-add_executable(vizSTLPerf ${SRC_LIST})
+add_executable(VizSTLPerf ${SRC_LIST})
 # 设置依赖库
-TARGET_LINK_LIBRARIES(vizSTLPerf
+TARGET_LINK_LIBRARIES(VizSTLPerf
     -lpthread
 )

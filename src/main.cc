@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <unistd.h>
 #include "ListPerf.h"
+#include "VectorPerf.h"
 
 /************************************************************
 * 功能：该程序用以测度STL各组件各种操作的性能
