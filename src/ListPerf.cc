@@ -30,6 +30,30 @@ void listPerfUsage(void)
 
 int listPerf(int argc, char *argv[])
 {
-    return 0;
+    static const struct option opts[] = {
+        {"help", no_argument, NULL, 'h'},
+        {NULL, 0, NULL, 0},
+    };
+    int rc = -1, i;
+    char *cmd = NULL;
+    int opt;
+    std::cout<<"start listPerf...."<<std::endl;
+    for (;;) {
+        opt = getopt_long(argc, argv, "h", opts, NULL);
+        if (opt == -1) {
+            break;
+        }
+        switch (opt) {
+            case 'h':
+                listPerfUsage();
+                break;
+            case '?':
+                break;
+            default:
+                break;
+        }
+    }
+out:
+    return (rc == -1) ? EXIT_FAILURE : EXIT_SUCCESS;
 }
 

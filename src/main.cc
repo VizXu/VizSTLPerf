@@ -11,18 +11,39 @@
 /************************************************************
 * 功能：该程序用以测度STL各组件各种操作的性能
 * 支持：支持常用的STL组件，如vector, list, deque, map, set等
-* 方法：<组件> <操作> [动作|方法] [size] [looptimes]
+* 方法：<组件> <操作> [动作|方法] [POD|OBJ] [size] [looptimes]
 *************************************************************/
 
 void usage(void)
 {
-    std::cout<<"=============welcome to use VizSTLPerf=============\n";
+    std::cout<<"======================================welcome to use VizSTLPerf============================================\n";
     std::cout<<"Description:\n";
-    std::cout<<"\tVizSTLPerf is a tool to measure the operations\n";
-    std::cout<<"\tperformance of STL components, such as the insert\n";
-    std::cout<<"\tperformance of List, Vector etc.\n";
-    std::cout<<"Supports:\n";
-    std::cout<<"==================================================="<<std::endl;
+    std::cout<<"\tVizSTLPerf is a tool to measure the operations performance of STL components, such as the insert\n";
+    std::cout<<"\tdelete, query, modify performance of List, Vector etc.\n";
+    std::cout<<"Supports(container/algorithm):\n";
+    std::cout<<"\tcontainer:\n";
+    std::cout<<"\t\tarray\n";
+    std::cout<<"\t\tstring\n";
+    std::cout<<"\t\tlist\n";
+    std::cout<<"\t\tforward_list\n";
+    std::cout<<"\t\tvector\n";
+    std::cout<<"\t\tdeque\n";
+    std::cout<<"\t\tqueue\n";
+    std::cout<<"\t\tpriority_queue\n";
+    std::cout<<"\t\tmap\n";
+    std::cout<<"\t\tset\n";
+    std::cout<<"\t\ttuple\n";
+    std::cout<<"\t\tunordered_map\n";
+    std::cout<<"\t\tunordered_set\n";
+    std::cout<<"\talgorithm:\n";
+    std::cout<<"\t\tany_of\n";
+    std::cout<<"\t\tall_of\n";
+    std::cout<<"\t\tsort\n";
+    std::cout<<"\t\tfind\n";
+    std::cout<<"\t\tfind_n\n";
+    std::cout<<"Usage Example:\n";
+    std::cout<<"\tVizSTLPerf list --ops insert --action push_back --looptimes 1000\n";
+    std::cout<<"==========================================================================================================="<<std::endl;
 }
 
 struct commands {
@@ -33,12 +54,13 @@ struct commands {
 };
 
 static const struct commands cmds[] = {
-    {"List", listPerf, listPerfUsage, NULL},
+    {"list", listPerf, listPerfUsage, NULL},
     {NULL, NULL, NULL, NULL}
 };
 
 int run_command(const struct commands *cmd, int argc, char *argv[])
 {
+    // std::cout<<"run command, cmd->name is "<<cmd->name<<std::endl;
     return cmd->function(argc, argv);
 }
 
@@ -83,6 +105,7 @@ int main(int argc, char *argv[])
                 goto out;
             }
         }
+        usage();
     }
 out:
     return (rc > -1 ? EXIT_SUCCESS : EXIT_FAILURE);
